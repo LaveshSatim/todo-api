@@ -9,12 +9,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @org.springframework.web.bind.annotation.ExceptionHandler(value = {ToDoExceptions.class })
-    protected ResponseEntity<Object> handleConflict(
-            ToDoExceptions ex, WebRequest request) {
-        String bodyOfResponse = ex.getMessage();
-        return handleExceptionInternal(ex, bodyOfResponse,
-                new HttpHeaders(), ex.getHttpStatus(), request);
-    }
+	@org.springframework.web.bind.annotation.ExceptionHandler(value = { ToDoExceptions.class })
+	protected ResponseEntity<Object> handleConflict(ToDoExceptions ex, WebRequest request) {
+		String bodyOfResponse = ex.getMessage();
+		return super.handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), ex.getHttpStatus(), request);
+	}
 }
-
